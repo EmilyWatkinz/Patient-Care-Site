@@ -58,7 +58,8 @@
 }
 
 .nav-button:hover {
-  background-color: #f0f0f0;
+  background-color: #01F0D0;
+  color: #000;
 }
 
 .nav-button.active {
@@ -424,7 +425,8 @@
 }
 
 .patient-card:hover {
-  background-color: #e8f4f8;
+  background-color: #D8FCF7;
+  border-left: 4px solid #1a73e8;
 }
 
 .patient-card.selected {

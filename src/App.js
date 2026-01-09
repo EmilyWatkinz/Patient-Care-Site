@@ -10,7 +10,6 @@ import CreditCardIcon from './assets/credit_card_FILL0.svg';
 import DoctorProfile from './assets/doctor-profile.png';
 import SettingsIcon from './assets/settings_FILL0.svg';
 import MoreVertIcon from './assets/more_vert_FILL0.svg';
-import JessicaProfile from './assets/jessica-taylor-profile.png';
 import RespiratoryIcon from './assets/respiratory rate.svg';
 import TemperatureIcon from './assets/temperature.svg';
 import HeartRateIcon from './assets/HeartBPM.svg';
@@ -81,7 +80,7 @@ function App() {
             <img src={HomeIcon} alt="Overview" className="nav-icon" />
             <span>Overview</span>
           </button>
-          <button className="nav-button active">
+          <button className="nav-button">
             <img src={GroupIcon} alt="Patients" className="nav-icon" />
             <span>Patients</span>
           </button>
@@ -177,7 +176,7 @@ function App() {
             {filteredPatients.map((patient) => (
               <div
                 key={patient.name}
-                className={`patient-card ${selectedPatient?.name === patient.name ? 'selected' : ''}`}
+                className="patient-card"
                 onClick={() => {
                   if (selectedPatient?.name !== patient.name) {
                     setIsTransitioning(true);
