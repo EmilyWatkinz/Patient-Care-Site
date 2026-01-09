@@ -142,6 +142,25 @@ function App() {
             ))}
           </select>
 
+          {/* Mobile Diagnosis Dropdown */}
+          {selectedPatient && (
+            <div className="diagnosis-dropdown-wrapper mobile-only">
+              <label htmlFor="diagnosis-select" className="diagnosis-dropdown-label">Diagnosis History:</label>
+              <select 
+                id="diagnosis-select"
+                className="diagnosis-dropdown"
+                value={selectedDiagnosisIndex}
+                onChange={(e) => setSelectedDiagnosisIndex(Number(e.target.value))}
+              >
+                {selectedPatient.diagnosis_history?.map((history, index) => (
+                  <option key={index} value={index}>
+                    {history.month} {history.year}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
           {/* Desktop List */}
           <div className="patients-list desktop-only">
             {patients.map((patient) => (
@@ -174,6 +193,104 @@ function App() {
             ))}
           </div>
         </div>
+
+        {/* Mobile Patient Info & Lab Results */}
+        {!isTransitioning && selectedPatient && (
+          <div className="mobile-patient-section mobile-only">
+            <div className="patient-profile-card">
+              <div className="profile-image-container">
+                <img src={selectedPatient.profile_picture} alt={selectedPatient.name} className="profile-image" />
+              </div>
+              <h2 className="profile-name">{selectedPatient.name}</h2>
+              
+              <div className="profile-details">
+                <div className="detail-item">
+                  <div className="detail-icon">📅</div>
+                  <div className="detail-content">
+                    <p className="detail-label">Date of Birth</p>
+                    <p className="detail-value">{selectedPatient.date_of_birth}</p>
+                  </div>
+                </div>
+
+                <div className="detail-item">
+                  <div className="detail-icon">⚥</div>
+                  <div className="detail-content">
+                    <p className="detail-label">Gender</p>
+                    <p className="detail-value">{selectedPatient.gender}</p>
+                  </div>
+                </div>
+
+                <div className="detail-item">
+                  <div className="detail-icon">📞</div>
+                  <div className="detail-content">
+                    <p className="detail-label">Contact Info</p>
+                    <p className="detail-value">{selectedPatient.phone_number}</p>
+                  </div>
+                </div>
+
+                <div className="detail-item">
+                  <div className="detail-icon">🚨</div>
+                  <div className="detail-content">
+                    <p className="detail-label">Emergency Contacts</p>
+                    <p className="detail-value">{selectedPatient.emergency_contact}</p>
+                  </div>
+                </div>
+
+                <div className="detail-item">
+                  <div className="detail-icon">🏥</div>
+                  <div className="detail-content">
+                    <p className="detail-label">Insurance Provider</p>
+                    <p className="detail-value">{selectedPatient.insurance_type}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vital Signs in Patient Card */}
+              <div className="vital-signs-in-card">
+                <div className="vital-card" style={{backgroundColor: '#E0F3FA'}}>
+                  <img src={RespiratoryIcon} alt="Respiratory Rate" className="vital-icon" />
+                  <div className="vital-info">
+                    <p className="vital-label">Respiratory Rate</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.respiratory_rate?.value} bpm</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.respiratory_rate?.levels}</p>
+                  </div>
+                </div>
+
+                <div className="vital-card" style={{backgroundColor: '#FFE6E9'}}>
+                  <img src={TemperatureIcon} alt="Temperature" className="vital-icon" />
+                  <div className="vital-info">
+                    <p className="vital-label">Temperature</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.temperature?.value}°F</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.temperature?.levels}</p>
+                  </div>
+                </div>
+
+                <div className="vital-card" style={{backgroundColor: '#FFE6F1'}}>
+                  <img src={HeartRateIcon} alt="Heart Rate" className="vital-icon" />
+                  <div className="vital-info">
+                    <p className="vital-label">Heart Rate</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.heart_rate?.value} bpm</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.heart_rate?.levels}</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="show-all-btn">Show All Information</button>
+            </div>
+
+            <div className="lab-results-section">
+              <h2 className="section-title">Lab Results</h2>
+              <div className="lab-results-list">
+                {selectedPatient.lab_results?.map((result, index) => (
+                  <div key={index} className="lab-result-item">
+                    <span className="lab-result-name">{result}</span>
+                    <img src={DownloadIcon} alt="Download" className="lab-download-icon" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </aside>
 
    
@@ -197,24 +314,6 @@ function App() {
         ) : selectedPatient && (
           <>
             <h1 className="main-title">Diagnosis History</h1>
-            
-            {/* Mobile Diagnosis Dropdown */}
-            <div className="diagnosis-dropdown-container mobile-only">
-              <label htmlFor="diagnosis-select" className="diagnosis-dropdown-label">Select Period:</label>
-              <select 
-                id="diagnosis-select"
-                className="diagnosis-dropdown"
-                value={selectedDiagnosisIndex}
-                onChange={(e) => setSelectedDiagnosisIndex(Number(e.target.value))}
-              >
-                {selectedPatient.diagnosis_history?.map((history, index) => (
-                  <option key={index} value={index}>
-                    {history.month} {history.year}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             <div className="diagnosis-history-section">
               <div className="diagnosis-graph">
                 <img src={GraphImage} alt="Blood Pressure Chart" className="graph-image" />

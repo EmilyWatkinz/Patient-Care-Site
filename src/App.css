@@ -207,6 +207,137 @@
   padding: 10px;
 }
 
+/* Diagnosis Dropdown Wrapper in Sidebar */
+.diagnosis-dropdown-wrapper {
+  margin-top: 15px;
+  display: none;
+}
+
+.diagnosis-dropdown-wrapper .diagnosis-dropdown-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.diagnosis-dropdown-wrapper .diagnosis-dropdown {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.diagnosis-dropdown-wrapper .diagnosis-dropdown:focus {
+  outline: none;
+  border-color: #01F0D0;
+}
+
+/* Mobile Patient Section */
+.mobile-patient-section {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+  padding-bottom: 30px;
+  background-color: #f6f7f8;
+}
+
+.mobile-patient-section .patient-profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-patient-section .profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mobile-patient-section .profile-name {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.mobile-patient-section .profile-details {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Vital Signs in Patient Card */
+.vital-signs-in-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 25px 0;
+  padding: 0;
+}
+
+.vital-signs-in-card .vital-card {
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.vital-signs-in-card .vital-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.vital-signs-in-card .vital-info {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vital-signs-in-card .vital-label {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  text-align: center;
+}
+
+.vital-signs-in-card .vital-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 3px 0;
+  text-align: center;
+}
+
+.vital-signs-in-card .vital-status {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-patient-section .show-all-btn {
+  width: 100%;
+}
+
+.mobile-patient-section .lab-results-section {
+  width: 100%;
+  margin-top: 0;
+}
+
 /* Diagnosis History Dropdown */
 .diagnosis-dropdown-container {
   background-color: white;
@@ -685,6 +816,8 @@
 @media (max-width: 1024px) {
   .content-wrapper {
     flex-direction: column;
+    overflow-y: auto;
+    height: calc(100vh - 70px);
   }
 
   .sidebar {
@@ -762,22 +895,51 @@
     display: block;
   }
 
-  .diagnosis-dropdown-container {
+  .diagnosis-dropdown-wrapper {
     display: block;
   }
 
+  .diagnosis-dropdown-container {
+    display: none !important;
+  }
+
+  .mobile-patient-section {
+    display: flex;
+  }
+
   .sidebar {
-    max-height: 120px;
-    min-height: auto;
+    max-height: none;
+    min-height: 100%;
+    width: 100%;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+  }
+
+  .patients-section {
+    padding: 15px;
+  }
+  
+  .content-wrapper {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    height: auto;
+    min-height: calc(100vh - 70px);
   }
 
   .main-content {
     padding: 15px;
   }
 
+  /* Hide Diagnosis History title on mobile */
   .main-title {
-    font-size: 20px;
-    margin-bottom: 15px;
+    display: none;
+  }
+
+  /* Hide main content on mobile */
+  .main-content {
+    display: none;
   }
 
   /* Hide diagnosis history graph on tablets and below */
@@ -800,6 +962,11 @@
 
   /* Hide diagnostic list on mobile */
   .diagnostic-list-section {
+    display: none;
+  }
+
+  /* Hide right sidebar on mobile since content moved to left sidebar */
+  .right-sidebar {
     display: none;
   }
 
