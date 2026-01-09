@@ -610,3 +610,745 @@
   margin-bottom: 12px;
   border-radius: 8px;
 }
+/* ===== RESPONSIVE STYLES FOR MOBILE DEVICES ===== */
+
+/* Large tablets and small desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 300px;
+  }
+
+  .right-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .vital-signs-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets (600px - 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 5px;
+  }
+
+  .nav-button {
+    padding: 8px 15px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .nav-button span {
+    display: none;
+  }
+
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .doctor-profile {
+    gap: 10px;
+  }
+
+  .doctor-info {
+    display: none;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .main-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Hide diagnosis history graph on tablets and below */
+  .diagnosis-history-section {
+    display: none;
+  }
+
+  .vital-signs-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .diagnostic-table {
+    overflow-x: auto;
+  }
+
+  .diagnostic-table table {
+    min-width: 600px;
+  }
+
+  /* Cleaner spacing for mobile */
+  .diagnostic-list-section {
+    margin-top: 15px;
+  }
+}
+
+/* Large phones (480px - 600px) */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 10px;
+  }
+
+  .navbar-logo {
+    height: 32px;
+  }
+
+  .doctor-photo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-icons {
+    gap: 8px;
+  }
+
+  .navbar-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sidebar {
+    max-height: 250px;
+  }
+
+  .patients-section {
+    padding: 15px;
+  }
+
+  .patients-title {
+    font-size: 16px;
+  }
+
+  .patient-card {
+    padding: 12px;
+  }
+
+  .patient-photo {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+
+  .patient-name {
+    font-size: 14px;
+  }
+
+  .patient-details {
+    font-size: 12px;
+  }
+
+  .main-content {
+    padding: 12px;
+  }
+
+  .main-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .diagnosis-history-section,
+  .diagnostic-list-section,
+  .lab-results-section,
+  .patient-profile-card {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  /* Maintain consistent card spacing */
+  .diagnostic-list-section {
+    margin-top: 0;
+  }
+
+  .section-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .vital-card {
+    padding: 15px;
+  }
+
+  .vital-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .vital-value {
+    font-size: 24px;
+  }
+
+  .vital-label {
+    font-size: 13px;
+  }
+
+  .vital-status {
+    font-size: 11px;
+  }
+
+  .diagnostic-table th,
+  .diagnostic-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .right-sidebar {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-name {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .profile-details {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .detail-label {
+    font-size: 11px;
+  }
+
+  .detail-value {
+    font-size: 13px;
+  }
+
+  .show-all-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .lab-results-list {
+    max-height: 200px;
+  }
+
+  .lab-result-item {
+    padding: 10px;
+  }
+
+  .lab-result-name {
+    font-size: 13px;
+  }
+
+  /* Reduce margins and padding for cleaner look */
+  .diagnostic-list-section,
+  .lab-results-section,
+  .patient-profile-card {
+    margin-bottom: 15px;
+  }
+}
+
+/* Medium phones (375px - 480px) */
+@media (max-width: 480px) {
+  .App {
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 6px 8px;
+    height: auto;
+  }
+
+  .navbar-logo {
+    height: 28px;
+  }
+
+  .navbar-center {
+    gap: 3px;
+    padding: 5px 0;
+  }
+
+  .nav-button {
+    padding: 6px 10px;
+    border-radius: 20px;
+  }
+
+  .nav-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .doctor-photo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-icons {
+    gap: 6px;
+  }
+
+  .navbar-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .sidebar {
+    max-height: 200px;
+  }
+
+  .patients-section {
+    padding: 10px;
+  }
+
+  .patients-header {
+    margin-bottom: 15px;
+  }
+
+  .patients-title {
+    font-size: 15px;
+  }
+
+  .patient-card {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .patient-photo {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+  }
+
+  .patient-name {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .patient-details {
+    font-size: 11px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .main-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .diagnosis-history-section,
+  .diagnostic-list-section,
+  .lab-results-section,
+  .patient-profile-card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* More compact spacing */
+  .diagnostic-list-section {
+    margin-top: 0;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .vital-signs-container {
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .vital-card {
+    padding: 12px;
+  }
+
+  .vital-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .vital-label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .vital-value {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+  .vital-status {
+    font-size: 10px;
+  }
+
+  .diagnostic-table th,
+  .diagnostic-table td {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .right-sidebar {
+    padding: 12px;
+    gap: 15px;
+  }
+
+  .patient-profile-card {
+    padding: 15px;
+  }
+
+  .profile-image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-name {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .profile-details {
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+
+  .detail-icon {
+    font-size: 18px;
+    width: 25px;
+  }
+
+  .detail-label {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+
+  .detail-value {
+    font-size: 12px;
+  }
+
+  .show-all-btn {
+    padding: 10px 18px;
+    font-size: 12px;
+    border-radius: 20px;
+  }
+
+  .lab-results-section {
+    padding: 12px;
+  }
+
+  .lab-results-list {
+    max-height: 180px;
+    gap: 8px;
+  }
+
+  .lab-result-item {
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .lab-result-name {
+    font-size: 12px;
+  }
+
+  .lab-download-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Small phones (320px - 375px) */
+@media (max-width: 375px) {
+  .App {
+    font-size: 13px;
+  }
+
+  .navbar {
+    padding: 5px 6px;
+  }
+
+  .navbar-logo {
+    height: 24px;
+  }
+
+  .navbar-center {
+    gap: 2px;
+  }
+
+  .nav-button {
+    padding: 5px 8px;
+  }
+
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .doctor-photo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar-icons {
+    gap: 4px;
+  }
+
+  .navbar-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .sidebar {
+    max-height: 180px;
+  }
+
+  .patients-section {
+    padding: 8px;
+  }
+
+  .patients-title {
+    font-size: 14px;
+  }
+
+  .patients-list {
+    gap: 8px;
+  }
+
+  .patient-card {
+    padding: 8px;
+  }
+
+  .patient-photo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+
+  .patient-name {
+    font-size: 12px;
+  }
+
+  .patient-details {
+    font-size: 10px;
+  }
+
+  .patient-more-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .main-content {
+    padding: 8px;
+  }
+
+  .main-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .diagnosis-history-section,
+  .diagnostic-list-section,
+  .lab-results-section,
+  .patient-profile-card {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  /* Tighter spacing for small screens */
+  .diagnostic-list-section {
+    margin-top: 0;
+  }
+
+  .section-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .vital-signs-container {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .vital-card {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .vital-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .vital-label {
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+
+  .vital-value {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .vital-status {
+    font-size: 9px;
+  }
+
+  .diagnostic-table th,
+  .diagnostic-table td {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .right-sidebar {
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .patient-profile-card {
+    padding: 12px;
+  }
+
+  .profile-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-name {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .profile-details {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .detail-icon {
+    font-size: 16px;
+    width: 22px;
+  }
+
+  .detail-label {
+    font-size: 9px;
+    margin-bottom: 2px;
+  }
+
+  .detail-value {
+    font-size: 11px;
+  }
+
+  .show-all-btn {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+
+  .lab-results-section {
+    padding: 10px;
+  }
+
+  .lab-results-list {
+    max-height: 150px;
+    gap: 6px;
+  }
+
+  .lab-result-item {
+    padding: 7px;
+  }
+
+  .lab-result-name {
+    font-size: 11px;
+  }
+
+  .lab-download-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Extra small phones (< 320px) */
+@media (max-width: 320px) {
+  .navbar-center {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .patients-section {
+    padding: 6px;
+  }
+
+  .main-content {
+    padding: 6px;
+  }
+
+  .diagnosis-history-section,
+  .diagnostic-list-section,
+  .lab-results-section,
+  .patient-profile-card {
+    padding: 8px;
+  }
+
+  .vital-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .vital-value {
+    font-size: 16px;
+  }
+
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Utility classes for mobile */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  /* Make scrollable areas touch-friendly */
+  .sidebar,
+  .main-content,
+  .right-sidebar,
+  .lab-results-list,
+  .patients-list {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve tap targets for mobile */
+  .nav-button,
+  .patient-card,
+  .lab-result-item,
+  .show-all-btn {
+    min-height: 44px;
+  }
+}
