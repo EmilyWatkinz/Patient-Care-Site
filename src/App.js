@@ -26,6 +26,14 @@ function App() {
   const [error, setError] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedDiagnosisIndex, setSelectedDiagnosisIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter patients based on search query
+  const filteredPatients = patients.filter(patient => 
+    patient.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    patient.gender.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    patient.age.toString().includes(searchQuery)
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -112,20 +120,26 @@ function App() {
           <div className="patients-section">
           <div className="patients-header">
             <h2 className="patients-title">Patients</h2>
-            <div className="search-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div className="search-container">
+              <input 
+                type="text"
+                placeholder="Search patients..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+              />
+              <svg className="search-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M21 21L16.65 16.65" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
           </div>
 
-          {/* Mobile Dropdown */}
           <select 
             className="patients-dropdown mobile-only"
             value={selectedPatient?.name || ''}
             onChange={(e) => {
-              const patient = patients.find(p => p.name === e.target.value);
+              const patient = filteredPatients.find(p => p.name === e.target.value);
               if (patient) {
                 setIsTransitioning(true);
                 setTimeout(() => {
@@ -135,14 +149,12 @@ function App() {
               }
             }}
           >
-            {patients.map((patient) => (
+            {filteredPatients.map((patient) => (
               <option key={patient.name} value={patient.name}>
                 {patient.name} - {patient.gender}, {patient.age}
               </option>
             ))}
           </select>
-
-          {/* Mobile Diagnosis Dropdown */}
           {selectedPatient && (
             <div className="diagnosis-dropdown-wrapper mobile-only">
               <label htmlFor="diagnosis-select" className="diagnosis-dropdown-label">Diagnosis History:</label>
@@ -161,9 +173,8 @@ function App() {
             </div>
           )}
 
-          {/* Desktop List */}
           <div className="patients-list desktop-only">
-            {patients.map((patient) => (
+            {filteredPatients.map((patient) => (
               <div
                 key={patient.name}
                 className={`patient-card ${selectedPatient?.name === patient.name ? 'selected' : ''}`}
@@ -193,8 +204,6 @@ function App() {
             ))}
           </div>
         </div>
-
-        {/* Mobile Patient Info & Lab Results */}
         {!isTransitioning && selectedPatient && (
           <div className="mobile-patient-section mobile-only">
             <div className="patient-profile-card">
@@ -245,7 +254,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Vital Signs in Patient Card */}
+            
               <div className="vital-signs-in-card">
                 <div className="vital-card" style={{backgroundColor: '#E0F3FA'}}>
                   <img src={RespiratoryIcon} alt="Respiratory Rate" className="vital-icon" />
