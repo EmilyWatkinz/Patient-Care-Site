@@ -183,6 +183,75 @@
   gap: 10px;
 }
 
+/* Mobile Dropdown for Patients */
+.patients-dropdown {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  display: none;
+}
+
+.patients-dropdown:focus {
+  outline: none;
+  border-color: #01F0D0;
+}
+
+.patients-dropdown option {
+  padding: 10px;
+}
+
+/* Diagnosis History Dropdown */
+.diagnosis-dropdown-container {
+  background-color: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  display: none;
+}
+
+.diagnosis-dropdown-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.diagnosis-dropdown {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.diagnosis-dropdown:focus {
+  outline: none;
+  border-color: #01F0D0;
+}
+
+/* Show/Hide Classes */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: flex;
+}
+
 .patient-card {
   display: flex;
   align-items: center;
@@ -680,23 +749,58 @@
     display: none;
   }
 
+  /* Show mobile dropdown, hide desktop list */
+  .mobile-only {
+    display: block !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .patients-dropdown {
+    display: block;
+  }
+
+  .diagnosis-dropdown-container {
+    display: block;
+  }
+
+  .sidebar {
+    max-height: 120px;
+    min-height: auto;
+  }
+
   .main-content {
     padding: 15px;
   }
 
   .main-title {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   /* Hide diagnosis history graph on tablets and below */
-  .diagnosis-history-section {
+  .diagnosis-history-section .diagnosis-graph {
     display: none;
+  }
+
+  /* Show only vital signs on mobile, hide from diagnosis-history-section */
+  .diagnosis-history-section {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
   }
 
   .vital-signs-container {
     grid-template-columns: 1fr;
     gap: 15px;
+    margin-top: 0;
+  }
+
+  /* Hide diagnostic list on mobile */
+  .diagnostic-list-section {
+    display: none;
   }
 
   .diagnostic-table {
@@ -709,7 +813,7 @@
 
   /* Cleaner spacing for mobile */
   .diagnostic-list-section {
-    margin-top: 15px;
+    margin-top: 0;
   }
 }
 

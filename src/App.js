@@ -25,6 +25,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [selectedDiagnosisIndex, setSelectedDiagnosisIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,7 +119,31 @@ function App() {
               </svg>
             </div>
           </div>
-          <div className="patients-list">
+
+          {/* Mobile Dropdown */}
+          <select 
+            className="patients-dropdown mobile-only"
+            value={selectedPatient?.name || ''}
+            onChange={(e) => {
+              const patient = patients.find(p => p.name === e.target.value);
+              if (patient) {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  setSelectedPatient(patient);
+                  setIsTransitioning(false);
+                }, 300);
+              }
+            }}
+          >
+            {patients.map((patient) => (
+              <option key={patient.name} value={patient.name}>
+                {patient.name} - {patient.gender}, {patient.age}
+              </option>
+            ))}
+          </select>
+
+          {/* Desktop List */}
+          <div className="patients-list desktop-only">
             {patients.map((patient) => (
               <div
                 key={patient.name}
@@ -172,20 +197,38 @@ function App() {
         ) : selectedPatient && (
           <>
             <h1 className="main-title">Diagnosis History</h1>
+            
+            {/* Mobile Diagnosis Dropdown */}
+            <div className="diagnosis-dropdown-container mobile-only">
+              <label htmlFor="diagnosis-select" className="diagnosis-dropdown-label">Select Period:</label>
+              <select 
+                id="diagnosis-select"
+                className="diagnosis-dropdown"
+                value={selectedDiagnosisIndex}
+                onChange={(e) => setSelectedDiagnosisIndex(Number(e.target.value))}
+              >
+                {selectedPatient.diagnosis_history?.map((history, index) => (
+                  <option key={index} value={index}>
+                    {history.month} {history.year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="diagnosis-history-section">
               <div className="diagnosis-graph">
                 <img src={GraphImage} alt="Blood Pressure Chart" className="graph-image" />
               </div>
 
              
-              <div className="vital-signs-container">
+              <div className="vital-signs-container mobile-only">
                
                 <div className="vital-card" style={{backgroundColor: '#E0F3FA'}}>
                   <img src={RespiratoryIcon} alt="Respiratory Rate" className="vital-icon" />
                   <div className="vital-info">
                     <p className="vital-label">Respiratory Rate</p>
-                    <p className="vital-value">{selectedPatient.diagnosis_history[0]?.respiratory_rate?.value} bpm</p>
-                    <p className="vital-status">{selectedPatient.diagnosis_history[0]?.respiratory_rate?.levels}</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.respiratory_rate?.value} bpm</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.respiratory_rate?.levels}</p>
                   </div>
                 </div>
 
@@ -194,8 +237,8 @@ function App() {
                   <img src={TemperatureIcon} alt="Temperature" className="vital-icon" />
                   <div className="vital-info">
                     <p className="vital-label">Temperature</p>
-                    <p className="vital-value">{selectedPatient.diagnosis_history[0]?.temperature?.value}°F</p>
-                    <p className="vital-status">{selectedPatient.diagnosis_history[0]?.temperature?.levels}</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.temperature?.value}°F</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.temperature?.levels}</p>
                   </div>
                 </div>
 
@@ -204,8 +247,8 @@ function App() {
                   <img src={HeartRateIcon} alt="Heart Rate" className="vital-icon" />
                   <div className="vital-info">
                     <p className="vital-label">Heart Rate</p>
-                    <p className="vital-value">{selectedPatient.diagnosis_history[0]?.heart_rate?.value} bpm</p>
-                    <p className="vital-status">{selectedPatient.diagnosis_history[0]?.heart_rate?.levels}</p>
+                    <p className="vital-value">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.heart_rate?.value} bpm</p>
+                    <p className="vital-status">{selectedPatient.diagnosis_history[selectedDiagnosisIndex]?.heart_rate?.levels}</p>
                   </div>
                 </div>
               </div>
